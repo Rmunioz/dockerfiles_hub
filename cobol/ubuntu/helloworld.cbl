@@ -1,7 +1,0 @@
-IDENTIFICATION DIVISION.
-PROGRAM-ID. HELLO-WORLD.
-*> My hello world program
-PROCEDURE DIVISION.
-    DISPLAY 'Hello world from COBOL'.
-    STOP RUN.
-
