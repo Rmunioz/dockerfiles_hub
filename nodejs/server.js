@@ -2,43 +2,15 @@
 
 const express = require('express');
 const config = require('./config.js');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const db = require('./ORM/models');
+// Constants
+const PORT = config.PORT;
+const HOST = config.HOST;
 
-// Set up the express app
+// App
 const app = express();
-const port = process.env.PORT || 8000;
+app.get('/', (req, res) => {
+  res.send('Hola mundo');
+});
 
-//Log requests to the console
-app.use(logger('dev'));
-
-// Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
-
-// Require routes into app
-require('./routes')(app);
-
-// Setup a default catch-all route that sends back a welcome message in JSON
-app.get('*', (req, res) => res.status(200).send({
-    message: 'Welcome to the beginning of the todo app!!',
-}));
-
-if (app.settings.env === "production") {
-    db.sequelize.sync().then(() => {
-        app.listen(port, () => {
-            console.log("App listening on PORT " + port);
-        });
-    });
-} else {
-    db.sequelize.sync({
-        force: true
-    }).then(() => {
-        app.listen(port, () => {
-            console.log("App listening on PORT " + port);
-        });
-    });
-}
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
