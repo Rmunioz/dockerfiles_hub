@@ -8,9 +8,9 @@ const HOST = config.HOST;
 
 // App
 const app = express();
-app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to the beginning of the todo app!!',
-}));
+app.get('/', (req, res)=> {
+  res.send ('Welcome to the beginning of the todo app!!');
+});
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
