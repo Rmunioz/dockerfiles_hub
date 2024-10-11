@@ -27,7 +27,7 @@ app.get('*', (req, res) => res.status(200).send({
 
 if (app.settings.env === "production") {
     db.sequelize.sync().then(() => {
-        app.listen(PORT, () => {
+        app.listen(port, () => {
             console.log("App listening on PORT " + port);
         });
     });
@@ -35,7 +35,7 @@ if (app.settings.env === "production") {
     db.sequelize.sync({
         force: true
     }).then(() => {
-        app.listen(PORT, () => {
+        app.listen(port, () => {
             console.log("App listening on PORT " + port);
         });
     });
